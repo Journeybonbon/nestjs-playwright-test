@@ -39,6 +39,7 @@ export class MenuRobot {
             }
         }
         
+        // menu_list 객체 반환
         return menu_list
     }
 
