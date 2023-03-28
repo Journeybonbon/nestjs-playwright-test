@@ -1,8 +1,9 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { InjectBrowser } from 'nestjs-playwright';
-import { Browser} from '@playwright/test';
+import { Browser, chromium } from '@playwright/test';
 import { KumohTimeRobot } from './kumoh-time.robot';
 import { KumohTimeHelper } from './kumoh-time.helper';
+import { RequestTimeDto } from './request-kumoh-time.dto';
 
 @Controller('kumoh-time')
 export class KumohTimeController {
@@ -13,16 +14,16 @@ export class KumohTimeController {
 
     @Get()
     async getTimeTable() : Promise<any> {
-        const browserPage = await this.browser.newPage()
-        this.kumohTimeRobot.run(browserPage)
+        const browser = await chromium.launch({ headless: true });
+        const page = await browser.newPage();
+        this.kumohTimeRobot.run(page)
         return "KumohTime"
     }
     
-    @Get('xlsx')
-    async getExcel() : Promise<any> {
+    @Get('/xlsx')
+    async getExcel(@Query() requestDto: RequestTimeDto) : Promise<any> {
         const helper = new KumohTimeHelper()
-
-        helper.getFile()
+        helper.getFile(requestDto)
         return "Helper"
     }
 }

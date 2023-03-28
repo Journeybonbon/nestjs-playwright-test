@@ -8,7 +8,7 @@ import { KumohTimeRobot } from './kumoh-time.robot';
   imports: [
     PlaywrightModule.forRoot(
       {
-        headless: false,
+        headless: true,
         channel: 'chrome',
         isGlobal: true
       }
