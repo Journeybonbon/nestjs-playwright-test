@@ -1,8 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import { InjectBrowser } from 'nestjs-playwright';
 import { MenuRobot } from './menu.robot';
-import { Browser, Page } from '@playwright/test';
-import { MenuDto } from './dto/menu.dto';
+import { Browser, chromium } from '@playwright/test';
 
 @Controller('menu')
 export class MenuController {
@@ -12,8 +11,9 @@ export class MenuController {
 
     @Get()
     async getPureum() : Promise<any> {
-        const browserPage = await this.browser.newPage()
-        const robot = new MenuRobot(browserPage)
+        const browser = await chromium.launch({ headless: true });
+        const page = await browser.newPage();
+        const robot = new MenuRobot(page)
 
         const menu = await robot.run();
 

@@ -9,7 +9,8 @@ import { RequestTimeDto } from './request-kumoh-time.dto';
 export class KumohTimeController {
     constructor(
         @InjectBrowser() private readonly browser: Browser,
-        private kumohTimeRobot: KumohTimeRobot
+        private kumohTimeRobot: KumohTimeRobot,
+        private kumohTimeHelper: KumohTimeHelper
     ){}
 
     @Get()
@@ -22,8 +23,7 @@ export class KumohTimeController {
     
     @Get('/xlsx')
     async getExcel(@Query() requestDto: RequestTimeDto) : Promise<any> {
-        const helper = new KumohTimeHelper()
-        helper.getFile(requestDto)
+        await this.kumohTimeHelper.saveTime(requestDto)
         return "Helper"
     }
 }

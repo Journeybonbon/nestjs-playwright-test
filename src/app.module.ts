@@ -5,12 +5,14 @@ import { MenuModule } from './menu/menu.module';
 import { KumohTimeModule } from './kumoh-time/kumoh-time.module';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm'
-import { KumohTime } from './kumoh-time/kumoh-time.entity';
+import { KumohTime } from './database/kumoh-time.entity';
+import { DatabaseModule } from './database/database.module';
 
 @Module({
   imports: [
     MenuModule,
     KumohTimeModule,
+    // DatabaseModule,
     ConfigModule.forRoot({
       isGlobal: true
     }),

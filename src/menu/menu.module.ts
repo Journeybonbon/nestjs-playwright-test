@@ -7,7 +7,7 @@ import { MenuRobot } from './menu.robot';
     imports: [
         PlaywrightModule.forRoot(
             {
-                headless: false,
+                headless: true,
                 channel: 'chrome',
                 isGlobal: true,
             }

@@ -16,4 +16,8 @@ export class KumohTimeRepository{
     async save(time: KumohTime) {
         this.timeRepo.save(time);
     }
+
+    nothing() {
+        console.log('hihihihihi')
+    }
 }
