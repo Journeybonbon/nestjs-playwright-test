@@ -1,15 +1,14 @@
-import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Injectable } from '@nestjs/common';
 import * as XLSX from 'xlsx';
 import { KumohTime } from '../database/kumoh-time.entity';
 import { KumohTimeRepository } from '../database/kumoh-time.repository';
 import { RequestTimeDto } from './request-kumoh-time.dto';
 
+@Injectable()
 export class KumohTimeHelper{
     
     constructor(
-        // private timeRepository: KumohTimeRepository
-        @InjectRepository(KumohTime) private timeRepository: Repository<KumohTime>,
+        private timeRepository: KumohTimeRepository
     ){ }
 
     async saveTime(requestDto: RequestTimeDto) {

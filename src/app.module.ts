@@ -12,7 +12,7 @@ import { DatabaseModule } from './database/database.module';
   imports: [
     MenuModule,
     KumohTimeModule,
-    // DatabaseModule,
+    DatabaseModule,
     ConfigModule.forRoot({
       isGlobal: true
     }),

@@ -5,9 +5,9 @@ import { KumohTimeRepository } from './kumoh-time.repository';
 
 @Global()
 @Module({
-    // imports: [
-    //     TypeOrmModule.forFeature([KumohTime])
-    // ],
+    imports: [
+        TypeOrmModule.forFeature([KumohTime])
+    ],
     providers: [KumohTimeRepository],
     exports: [KumohTimeRepository]
 })
